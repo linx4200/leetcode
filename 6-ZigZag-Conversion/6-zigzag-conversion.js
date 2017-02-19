@@ -25,31 +25,29 @@ var convert = function(s, numRows) {
     var j = 0
     var last = 0
     if (kk === 0) kk = k
-    for (var index = i, length = s.length; index < length; index++) {
-      var ss = s[index]
+    for (var idx = i, length = s.length; idx < length; idx++) {
       // 第一行跟最后一行
       if (i === 0 || i === numRows - 1) {
-        if (index === i + j * kk) {
-          res += ss
-          j++
-        }
+        res += s[i + j * kk]
+        j++
+        if (i + j * kk >= length) break;
       }
       // 中间行
       else {
-        if (index === i) {
-          res += ss
+        if (idx === i) {
+          res += s[i]
           j++
           last = i
         }
-        else if (j % 2 === 1 && index === last + kk) {
-          res += ss
+        else if (j % 2 === 1 && idx === last + kk) {
+          res += s[last + kk]
           j++
-          last = index
+          last = idx
         }
-        else if (j % 2 === 0 && index === last + ( k - kk)) {
-          res += ss
+        else if (j % 2 === 0 && idx === last + (k - kk)) {
+          res += s[last + (k - kk)]
           j++
-          last = index
+          last = idx
         }
       }
     }

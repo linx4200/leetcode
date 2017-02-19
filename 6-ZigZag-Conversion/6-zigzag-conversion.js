@@ -21,34 +21,19 @@ var convert = function(s, numRows) {
   var k = 2 * numRows - 2
   // i 为行数
   for (var i = 0; i < numRows; i++) {
-    var kk = k - i * 2
-    var j = 0
-    var last = 0
-    if (kk === 0) kk = k
-    for (var idx = i, length = s.length; idx < length; idx++) {
+    var idx = i
+    // 注意: 下标超过数组长度就可以停止了
+    for (var j = 0, length = s.length; idx < length; j++) {
+      res += s[idx]
       // 第一行跟最后一行
       if (i === 0 || i === numRows - 1) {
-        res += s[i + j * kk]
-        j++
-        if (i + j * kk >= length) break;
+        idx += k
       }
-      // 中间行
       else {
-        if (idx === i) {
-          res += s[i]
-          j++
-          last = i
-        }
-        else if (j % 2 === 1 && idx === last + kk) {
-          res += s[last + kk]
-          j++
-          last = idx
-        }
-        else if (j % 2 === 0 && idx === last + (k - kk)) {
-          res += s[last + (k - kk)]
-          j++
-          last = idx
-        }
+        // 奇数列
+        if (j % 2 === 0) idx += k - 2 * i
+        // 偶数列
+        if (j % 2 === 1) idx += 2 * i
       }
     }
   }
@@ -57,5 +42,5 @@ var convert = function(s, numRows) {
 
 convert('AB', 1)  // AB
 convert('PAYPALISHIRING', 3)  // PAHNAPLSIIGYIR
-convert('PAYPALISHIRING', 4)  // PINALSIGYAHRPI
+convert('PAYPALISHIRING', 4)  // PINALSIGYAHRPI  
 convert('PAYPALISHIRING', 5)  // PHASIYIRPLIGAN

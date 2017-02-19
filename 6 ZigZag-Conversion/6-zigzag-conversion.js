@@ -16,9 +16,8 @@
  * @return {string}
  */
 var convert = function(s, numRows) {
-  if (numRows === 1) return s
-  var arr = s.split('')
-  var res = []
+  if (numRows <= 1 || !s || s.length === 0) return s
+  var res = ''
   var k = 2 * numRows - 2
   // i 为行数
   for (var i = 0; i < numRows; i++) {
@@ -26,38 +25,39 @@ var convert = function(s, numRows) {
     var j = 0
     var last = 0
     if (kk === 0) kk = k
-    arr.forEach(function (ss, index) {
+    for (var index = i, length = s.length; index < length; index++) {
+      var ss = s[index]
       // 第一行跟最后一行
       if (i === 0 || i === numRows - 1) {
         if (index === i + j * kk) {
-          res.push(ss)
+          res += ss
           j++
         }
       }
       // 中间行
       else {
         if (index === i) {
-          res.push(ss)
+          res += ss
           j++
           last = i
         }
         else if (j % 2 === 1 && index === last + kk) {
-          res.push(ss)
+          res += ss
           j++
           last = index
         }
         else if (j % 2 === 0 && index === last + ( k - kk)) {
-          res.push(ss)
+          res += ss
           j++
           last = index
         }
       }
-    })
+    }
   }
-  return res.join('')
+  return res
 }
 
 convert('AB', 1)  // AB
 convert('PAYPALISHIRING', 3)  // PAHNAPLSIIGYIR
 convert('PAYPALISHIRING', 4)  // PINALSIGYAHRPI
-convert('PAYPALISHIRING', 5)  // PHGASILIRPLIAN
+convert('PAYPALISHIRING', 5)  // PHASIYIRPLIGAN

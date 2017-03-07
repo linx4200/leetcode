@@ -80,3 +80,32 @@ var findComplement = function(num) {
 
 提交显示成功，但是 Your runtime beats 5.51% of javascript submissions.
 
+# Second Attempt
+
+github 上搜索[大神的答案](https://github.com/hanzichi/leetcode/blob/master/Algorithms/Number%20Complement/number-complement.js)
+
+```javascript
+var findComplement = function(num) {
+  let ans = 0
+    , add = 1;
+
+  while (num) {
+    if (!(num & 1)) // 最后一位为 0
+      ans += add;
+    num >>= 1;
+    add <<= 1; // 左移 1 位，补0
+  }
+
+  return ans;
+};
+```
+
+`>>=` 和 `<<=` 没见过:
+
+```js
+x >>= y
+// meaning ==>
+x = x >> y
+```
+
+超聪明的，原有数字右移的同时，用另外一个数左移，就等于一位一位地把原来的位置掉转。

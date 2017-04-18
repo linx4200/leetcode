@@ -19,11 +19,11 @@
  * @return {number[]}
  */
 var countBits = function(num) {
-  const res = []
-  for(let i = 0; i <= num; i++) {
-    res[i] = i.toString(2).replace(/0/g, '').length
+  const res = [0]
+  for(let i = 1; i <= num; i++) {
+    res[i] = res[i&(i-1)] + 1;
   }
   return res
 };
 
-// countBits(5) // [0,1,1,2,1,2]
+countBits(5) // [0,1,1,2,1,2]

@@ -1,2 +1,4 @@
 # leetcode
-my dumb solutions for LeetCode
+My dumb solutions for LeetCode.
+
+https://leetcode.com/linx4200/

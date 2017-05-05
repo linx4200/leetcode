@@ -46,3 +46,15 @@ false < 0 // false
 因此直接改成 `nums.sort((a, b) => a - b)` ，完成，得出正确答案！
 
 > Your runtime beats 15.35 % of javascript submissions.
+
+# Attemp 2
+
+优化一下，可以把 `filter` 的操作直接放到 `reduce` 里面：
+
+```js
+const arrayPairSum = function(nums) {
+  return nums.sort((a, b) => a - b).reduce(((p, c, i) => (i % 2 === 0 ? p + c : p)), 0);
+};
+```
+
+> Your runtime beats 51.63 % of javascript submissions.

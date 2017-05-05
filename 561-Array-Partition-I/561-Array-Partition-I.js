@@ -21,7 +21,7 @@
  * @return {number}
  */
 const arrayPairSum = function(nums) {
-  return nums.sort((a, b) => a - b).filter((v, i) => i % 2 === 0).reduce(((p, c) => p + c), 0);
+  return nums.sort((a, b) => a - b).reduce(((p, c, i) => (i % 2 === 0 ? p + c : p)), 0);
 };
 
 // arrayPairSum([-2,3,-1,5,2,0,10,-5]) // 1
